@@ -6,6 +6,7 @@
      
      c=a+b;
      printf("The value of c is %d\n",c);
+     //
      
      return(0);
  }
