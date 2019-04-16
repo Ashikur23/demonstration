@@ -142,3 +142,33 @@ void encryptRotationCipher(char message[],int bytesToRotate)
 // This function will decrypt the encrypted message to its original text using key to rotate.
 // input : parameter 1 : the key which is the no. of bytes to rotate
 // return : does not return anything
+void decryptRotationCipher(char message[], int key)
+{
+	char ch; int i;
+	//fgets(message,100,stdin);
+	for (i = 0; message[i] != '\0'; ++i)
+	{
+		ch = message[i];
+		if (message[i] >= 'a' && message[i] <= 'z')  // if the letter is in lowercase
+		{
+			ch = (ch - UPPER - key);
+			if (ch < ASCII_A)
+			{
+				int temp = ASCII_A - ch; 
+				ch = 90 - temp +1;
+			}
+			
+		}
+		else if (message[i] >= 'A' && message[i] <= 'Z') // if the letter is in uppercase
+		{
+			ch = (ch - ASCII_A - key);
+			if (ch < 0)
+			{
+				ch += ALPHA_COUNT;
+			}
+			ch = (ch % ALPHA_COUNT) + ASCII_A;
+		}
+		message[i] = ch;
+	}
+	
+}
