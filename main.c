@@ -31,11 +31,9 @@ int main()
 		{
 		case 1:
 			printf("Enter the string need to be encrypted: ");
-			//fflush(stdin);
 			scanf("%s", str);
 			printf("Enter no. of bytes to rotate: ");
 			scanf("%d", &bytesToRotate);               // bytesToRotate is the key for encrypting the message
-			//char msg[500] = "The seasoned comedienne actress revealed that she gets half the salary paid to Navjot Singh Sidhu for the show";
 			encryptRotationCipher(str,bytesToRotate);
 			printf("\nEncrypted message with Rotation cipher is : %s\n", str);
 			break;
@@ -78,7 +76,6 @@ int main()
 			break;
 		}  // end of switch case
 	}  // end of while loop
-	system("pause");
 	return 0;
 }
 
@@ -105,10 +102,6 @@ void encryptRotationCipher(char message[],int bytesToRotate)
 {
 	char ch; int i, temp;
 	int size = 100;
-//	fflush(stdin);
-	//scanf("%[^\n]%*c", message);
-	//fgets(message,100,stdin);
-	
 	for (i = 0; message[i] != '\0'; ++i)
 	{
 		ch = message[i];
@@ -133,7 +126,7 @@ void encryptRotationCipher(char message[],int bytesToRotate)
 void decryptRotationCipher(char message[], int key)
 {
 	char ch; int i;
-	//fgets(message,100,stdin);
+	
 	for (i = 0; message[i] != '\0'; ++i)
 	{
 		ch = message[i];
