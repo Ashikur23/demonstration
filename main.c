@@ -1,4 +1,4 @@
-#include <stdio.h>
+PERnitiali#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -11,7 +11,7 @@ int main()
 {
 	int option, bytesToRotate, exitLoop=1;
 	char str[200];
-	char substitution_Arr[26] = "QWERTYUIOPASDFGHJKLZXCVBNM"; // substitution array used to replace characters 'A' to 'Z'
+	char substitution_Arr[27] = "QWERTYUIOPASDFGHJKLZXCVBNM"; // substitution array used to replace characters 'A' to 'Z'
 	char msg[200];
 
 	void menu(void);
@@ -100,14 +100,14 @@ void menu()
 // return : does not return anything
 void encryptRotationCipher(char message[],int bytesToRotate)
 {
-	char ch; int i, temp;
-	int size = 100;
+	char ch; int i;
+	int size = 100;   
 	for (i = 0; message[i] != '\0'; ++i)
 	{
 		ch = message[i];
 		if (ch >= 'a' && ch <= 'z')
 		{
-			ch -= UPPER;                 // if letter is a lowercase, convert it into uppercase
+			ch -= UPPER;                 // if letter is a lowercase, convert it into uppercase  ch=ch - UPPER
 			ch = ((ch - ASCII_A + bytesToRotate) % ALPHA_COUNT) + ASCII_A;
 			
 		}
@@ -130,13 +130,13 @@ void decryptRotationCipher(char message[], int key)
 	for (i = 0; message[i] != '\0'; ++i)
 	{
 		ch = message[i];
-		if (message[i] >= 'a' && message[i] <= 'z')  // if the letter is in lowercase
+		if (message[i] >= 'a' && message[i] <= 'z')  // checking if the letter is in lower case
 		{
 			ch = (ch - UPPER - key);
 			if (ch < ASCII_A)
 			{
 				int temp = ASCII_A - ch; 
-				ch = 90 - temp +1;
+				ch = 90 - temp + 1;
 			}
 			
 		}
@@ -247,7 +247,7 @@ void encryptSubstitutionCipher(char msg[], char substitute[])
 		case 'Z':
 			msg[i] = substitute[25];
 			break;
-		}
+		}  // end of switch case
 	} // end of for loop
 }
 
@@ -269,6 +269,36 @@ void decryptSubstitutionCipher(char msg[], char substitute[])
 			}
 		}
 	}
+
+}
+
+// input : the encrypted message which needs to be decrypted 
+// This function will decrypt the encrypted message to its original text without any key, by using brute force
+// technique to find all possible 25 strings. 
+// return : does not return anything
+
+void decryptCipherTextWithoutKeyUsingBruteForce(char msg[]) {
+    int n = 25, i, temp;
+    
+    
+    
+    
+    
+    
+    
+    while (n-- > 0)					// All the 25 times for brute force analysis
+	{
+		for (i = 0; msg[i] != '\0'; ++i)
+		{
+			ch = msg[i];
+			if (msg[i] >= 'a' && msg[i] <= 'z')
+			{
+				ch = (ch - UPPER - n);
+				if (ch < ASCII_A)
+				{
+					temp = ASCII_A - ch;
+					ch = 90 - temp + 1;
+				}
 
 }
 
