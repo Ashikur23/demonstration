@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 #define UPPER 32             //pre processor directives or macros
@@ -32,7 +31,7 @@ int main()
 		{
 		case 1:
 			printf("Enter the string need to be encrypted: ");
-			scanf(" %[^\n]%*c", str);   // this will take the whole line until it reaches '\0'
+			scanf(" %[^\n]%*c", str);   // this will take the whole line of sentences until it reaches '\0'
 			printf("Enter no. of bytes to rotate: ");
 			scanf("%d", &bytesToRotate);               // bytesToRotate is the key for encrypting the message
 			encryptRotationCipher(str,bytesToRotate);  //function call for encrypt rotation 
@@ -308,7 +307,7 @@ void decryptCipherTextWithoutKeyUsingBruteForce(char msg[]) {
 				}
 				ch = (ch % ALPHA_COUNT) + ASCII_A;
 			}
-			msg[i] = ch;						// decrypting each letter and saving it in msg1 without altering
+			msg[i] = ch;						// decrypting each letter and saving it in msg without altering
 												// the original msg[]
 		}  // End of for loop
 		printf("Original Text with %d bytes rotation - %s\n", n, msg);
