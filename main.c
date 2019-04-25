@@ -274,21 +274,17 @@ void decryptSubstitutionCipher(char msg[], char substitute[])
 
 }
 
+
 // input : the encrypted message which needs to be decrypted 
 // This function will decrypt the encrypted message to its original text without any key, by using brute force
 // technique to find all possible 25 strings. 
 // return : does not return anything
 
 void decryptCipherTextWithoutKeyUsingBruteForce(char msg[]) {
-    int n = 25, i, temp;
-    
-    
-    
-    
-    
-    
-    
-    while (n-- > 0)					// All the 25 times for brute force analysis
+    int n = 25, i, temp; 
+	char ch;
+
+	while (n-- > 0)					// All the 25 times for brute force analysis
 	{
 		for (i = 0; msg[i] != '\0'; ++i)
 		{
@@ -302,5 +298,23 @@ void decryptCipherTextWithoutKeyUsingBruteForce(char msg[]) {
 					ch = 90 - temp + 1;
 				}
 
+			}
+			else if (msg[i] >= 'A' && msg[i] <= 'Z')
+			{
+				ch = (ch - ASCII_A - n);
+				if (ch < 0)
+				{
+					ch += ALPHA_COUNT;
+				}
+				ch = (ch % ALPHA_COUNT) + ASCII_A;
+			}
+			msg[i] = ch;						// decrypting each letter and saving it in msg1 without altering
+												// the original msg[]
+		}  // End of for loop
+		printf("Original Text with %d bytes rotation - %s\n", n, msg);
+	}  // End of while loop
+    
+   
 }
+
 
