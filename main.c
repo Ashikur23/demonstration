@@ -1,26 +1,27 @@
-PERnitiali#include <stdio.h>
+encr#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define UPPER 32
+#define UPPER 32             //pre processor directives or macros
 #define ASCII_A 65
 #define ALPHA_COUNT 26
+
+void menu(void);
+void encryptRotationCipher(char [],int);	
+void decryptRotationCipher(char [],int);
+void encryptSubstitutionCipher(char[], char []);
+void decryptSubstitutionCipher(char[], char[]);
+void decryptCipherTextWithoutKeyUsingBruteForce(char msg[]);
+void decryptUsingRotationCipherWithoutKeyUsingStatistical(char msg[]);
 
 
 int main()
 {
 	int option, bytesToRotate, exitLoop=1;
-	char str[200];
+	char str[500];
 	char substitution_Arr[27] = "QWERTYUIOPASDFGHJKLZXCVBNM"; // substitution array used to replace characters 'A' to 'Z'
 	char msg[200];
-
-	void menu(void);
-	void encryptRotationCipher(char [],int);
-	void decryptRotationCipher(char [],int);
-	void encryptSubstitutionCipher(char[], char []);
-	void decryptSubstitutionCipher(char[], char[]);
-	void decryptCipherTextWithoutKeyUsingBruteForce(char msg[]);
-	void decryptUsingRotationCipherWithoutKeyUsingStatistical(char msg[]);
+	
 
 	while (exitLoop)
 	{
@@ -31,39 +32,39 @@ int main()
 		{
 		case 1:
 			printf("Enter the string need to be encrypted: ");
-			scanf("%s", str);
+			scanf(" %[^\n]%*c", str);   // this will take the whole line until it reaches '\0'
 			printf("Enter no. of bytes to rotate: ");
 			scanf("%d", &bytesToRotate);               // bytesToRotate is the key for encrypting the message
-			encryptRotationCipher(str,bytesToRotate);
+			encryptRotationCipher(str,bytesToRotate);  //function call for encrypt rotation 
 			printf("\nEncrypted message with Rotation cipher is : %s\n", str);
 			break;
 		case 2:
 			printf("Enter the encrypted string need to be decrypted: ");
-			scanf("%s", str);
+	     	scanf(" %[^\n]%*c", str);  //it will take the multi words until it reaches '\0'
 			printf("Enter no. of bytes to rotate as given for its encryption: ");
-			scanf("%d", &bytesToRotate);
+			scanf("%d", &bytesToRotate);   // bytesToRotate is the key for the message
 			decryptRotationCipher(str,bytesToRotate);
 			printf("\nDecrypted message with Rotation cipher is : %s\n", str);
 			break;
 		case 3:
 			printf("Enter the string need to be encrypted: ");
-			scanf("%s", str);
+			scanf(" %[^\n]%*c", str);  //taking multi words except white space punctuation which are unmodified copied to output
 			encryptSubstitutionCipher(str, substitution_Arr);
 			printf("\nEncrypted message with substitution cipher is : %s\n", str);
 			break;
 		case 4:
 			printf("Enter the encrypted string need to be decrypted: ");
-			scanf("%s", str);
+			scanf(" %[^\n]%*c", str); 
 			decryptSubstitutionCipher(str, substitution_Arr);
 			printf("\nDecrypted message with substitution cipher is : %s\n", str);
 			break;
 		case 5:
 			printf("Enter the encrypted string need to be decrypted: ");
-			scanf("%s", str);
+			scanf(" %[^\n]%*c", str);
 			decryptCipherTextWithoutKeyUsingBruteForce(str);
 			break;
 		case 6:
-			strcpy(msg, "Billionaire entrepreneurs are sometimes known for their eccentric lifestyles but Twitter founder Jack Dorsey is being ridiculed on his own platform");
+			scanf(" %[^\n]%*c", msg);
 			// first will encryp the message using rotation cipher
 			encryptRotationCipher(msg, 7);
 			printf("Encrypted message: %s\n", msg);
@@ -77,7 +78,7 @@ int main()
 		}  // end of switch case
 	}  // end of while loop
 	return 0;
-}
+}   // end of main function
 
 // This function will print all the menu options to choose from
 void menu()
@@ -121,7 +122,8 @@ void encryptRotationCipher(char message[],int bytesToRotate)
 }
 
 // This function will decrypt the encrypted message to its original text using key to rotate.
-// input : parameter 1 : the key which is the no. of bytes to rotate
+// input: parameter 1 : the encrypted message which need to be decrypted
+// input : parameter 2 : the key which is the no. of bytes to rotate
 // return : does not return anything
 void decryptRotationCipher(char message[], int key)
 {
