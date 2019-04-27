@@ -279,9 +279,12 @@ void decryptSubstitutionCipher(char msg[], char substitute[])
 // technique to find all possible 25 strings. 
 // return : does not return anything
 
-void decryptCipherTextWithoutKeyUsingBruteForce(char msg[]) {
-    int n = 25, i, temp; 
+void decryptCipherTextWithoutKeyUsingBruteForce(char msg[])  // without the key
+{
+	int n = 25, i, temp; char *msg1;
 	char ch;
+	msg1 = (char*)malloc(strlen(msg) + 1);
+	strcpy(msg1, msg);
 
 	while (n-- > 0)					// All the 25 times for brute force analysis
 	{
@@ -307,13 +310,13 @@ void decryptCipherTextWithoutKeyUsingBruteForce(char msg[]) {
 				}
 				ch = (ch % ALPHA_COUNT) + ASCII_A;
 			}
-			msg[i] = ch;						// decrypting each letter and saving it in msg without altering
+			msg1[i] = ch;						// decrypting each letter and saving it in msg1 without altering
 												// the original msg[]
 		}  // End of for loop
-		printf("Original Text with %d bytes rotation - %s\n", n, msg);
+		printf("Original Text with %d bytes rotation - %s\n", n, msg1);
 	}  // End of while loop
-    
-   
 }
+
+
 
 
