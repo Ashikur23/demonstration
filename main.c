@@ -1,5 +1,5 @@
-#include <stdio.h>   
-#include <stdlib.h>
+#include <stdio.h>      //printf scanf definitions
+#include <stdlib.h>    
 #include <string.h>
 
 #define UPPER 32             //pre processor directives or macros
@@ -317,6 +317,52 @@ void decryptCipherTextWithoutKeyUsingBruteForce(char msg[])  // without the key
 		printf("Original Text with %d bytes rotation - %s\n", n, msg1);
 	}  // End of while loop
 }
+
+// input : the encrypted message which needs to be decrypted 
+// This function will decrypt the encrypted message to its original text without any key, by using statistical
+// analysis, considering the most occurring character in any english sentence is letter 'E'.
+// return : does not return anything
+void decryptUsingRotationCipherWithoutKeyUsingStatistical(char msg[])
+{
+	// Billionaire entrepreneurs are sometimes known for their eccentric lifestyles but Twitter founder Jack Dorsey is being ridiculed on his own platform
+	int count[3] = { 0,0,0 }; char maxChar[3] = { 0,0,0 };  // e  t  a    
+	int i, p, cnt = 0;
+	for (i = 0; msg[i] != '\0'; ++i)   // traversing the entire encrypted message
+	{
+		cnt = 0;
+		char ch = msg[i];
+		if (ch == ' ' || ch == maxChar[0] || ch == maxChar[1] || ch == maxChar[2])
+			continue;
+		for (p = 0; msg[p] != '\0'; p++)
+		{
+			if (ch == msg[p])
+				cnt++;
+		}
+
+		if (cnt > count[0])
+		{
+			count[2] = count[1]; maxChar[2] = maxChar[1]; count[1] = count[0]; maxChar[1] = maxChar[0];
+			count[0] = cnt; maxChar[0] = msg[i];
+		}
+		else if (cnt > count[1])
+		{
+			count[2] = count[1]; maxChar[2] = maxChar[1]; count[1] = cnt; maxChar[1] = msg[i];
+		}
+		else if (cnt > count[2])
+		{
+			count[2] = cnt; maxChar[2] = msg[i];
+		}
+
+	}  // end of outer for loop
+
+	   // we have stored 3 maximum occuring characters in maxChar[], which are encrypted using rotation 
+	   // By general rule of english, max character which occurs in any english sentence is 'E'
+	   // considering the first max character in the array to be encrypted character 'E'... we can get the key
+	   //and can use the same key for remaining characters to get the original text before encryption.
+	   // we need to do the same process for other 2 remaining max characters considering them to be ecrypted character
+	   // for 'E' and then we get 3 english sentences from the 3 maxchars from the encrypted string .... 
+	   // One of the three will be our original text which we have decrypted successfully. 
+
 
 
 
