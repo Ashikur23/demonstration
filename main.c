@@ -1,4 +1,7 @@
-#include <stdio.h>      //printf scanf definitions
+//Name:Ashikur Rahman Pavel
+//std :c3302293
+
+#include <stdio.h>         //printf scanf definitions
 #include <stdlib.h>    
 #include <string.h>
 
