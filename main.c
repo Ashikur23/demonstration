@@ -43,7 +43,7 @@ int main()
 			break;
 		case 2:
 			printf("Enter the encrypted string need to be decrypted: ");
-	     	scanf(" %[^\n]%*c", str);  //it will take the multi words until it reaches '\0'
+	        	scanf(" %[^\n]%*c", str);  //it will take the multi words until it reaches '\0'
 			printf("Enter no. of bytes to rotate as given for its encryption: ");
 			scanf("%d", &bytesToRotate);   // bytesToRotate is the key for the message
 			decryptRotationCipher(str,bytesToRotate);
@@ -67,6 +67,7 @@ int main()
 			decryptCipherTextWithoutKeyUsingBruteForce(str);
 			break;
 		case 6:
+		    printf("Enter the string need to be encrypted: ");
 			scanf(" %[^\n]%*c", msg);
 			// first will encryp the message using rotation cipher
 			encryptRotationCipher(msg, 7);
