@@ -360,8 +360,21 @@ void decryptUsingRotationCipherWithoutKeyUsingStatistical(char msg[])
 	   // considering the first max character in the array to be encrypted character 'E'... we can get the key
 	   //and can use the same key for remaining characters to get the original text before encryption.
 	   // we need to do the same process for other 2 remaining max characters considering them to be ecrypted character
-	   // for 'E' and then we get 3 english sentences from the 3 maxchars from the encrypted string .... 
-	   // One of the three will be our original text which we have decrypted successfully. 
+	   
+	   char ch; int key;
+	for (i = 0; i < 3; ++i)
+	{
+		key = maxChar[i] - 'E';
+		//ch = (ch - ASCII_A - key);
+		if (key < 0)
+		{
+			key += ALPHA_COUNT;
+
+		}
+		key = (key % ALPHA_COUNT);
+	}
+}
+
 
 
 
